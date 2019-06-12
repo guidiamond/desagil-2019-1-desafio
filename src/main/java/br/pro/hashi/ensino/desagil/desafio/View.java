@@ -70,6 +70,22 @@ public class View extends JPanel {
             int col = element.getCol();
 
             g.drawImage(image, col * CELL_SIZE, row * CELL_SIZE, CELL_SIZE, CELL_SIZE, this);
+            if (model.getHumanPlayer().getCol() == model.getTarget().getCol() && model.getHumanPlayer().getRow() == model.getTarget().getRow()){
+                model.setWinner(model.getHumanPlayer());
+                g.drawString("Você venceu!", 100, 100);
+            }
+
+            if (model.getCpuPlayer().getCol() == model.getTarget().getCol() && model.getCpuPlayer().getRow() == model.getTarget().getRow()){
+                model.setWinner(model.getCpuPlayer());
+            }
+
+            if(model.getWinner()==model.getCpuPlayer()){
+                g.drawString("Você perdeu!", 100, 100);
+            }
+
+            if(model.getWinner()==model.getHumanPlayer()) {
+                g.drawString("Você Venceu!", 100, 100);
+            }
         });
 
         // Linha necessária para evitar atrasos
